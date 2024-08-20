@@ -53,11 +53,11 @@
                                     </center>
 
                                     <div class="form-group">
-                                        <input class="form-control" value="123456789" placeholder="Nomor Induk Pegawai"
+                                        <input class="form-control" value="" placeholder="Nomor Induk Pegawai"
                                             type="number" name="nip">
                                     </div>
                                     <div class="form-group">
-                                        <input class="form-control" value="123456789" placeholder="Password"
+                                        <input class="form-control" value="" placeholder="Password"
                                             name="password" type="password" value="" id="myInput">
                                     </div>
                                     <div class="custom-control custom-checkbox mb-25">
@@ -66,7 +66,7 @@
                                         <label class="custom-control-label font-14" for="same-address">Lihat
                                             Password</label>
                                     </div>
-                                    <button class="btn btn-success btn-block" type="submit">Login</button>
+                                    <button class="btn btn-primary btn-block" type="submit">Login</button>
                                 </form>
                             </div>
                         </div>
