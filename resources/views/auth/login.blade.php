@@ -48,8 +48,8 @@
                                     <p class="text-center mb-30">Perpustakaan Perpustakaan YPPSB</p>
                                     <br>
                                     <center>
-                                        <p>Repost by <a href='https://stokcoding.com/' title='StokCoding.com'
-                                                target='_blank'>StokCoding.com</a></p>
+                                        <p>Created by <a href='https://www.instagram.com/rzaykey' title='https://www.instagram.com/rzaykey''
+                                                target='_blank'>Rzaykey</a></p>
                                     </center>
 
                                     <div class="form-group">
