@@ -1,12 +1,12 @@
 @extends('layouts.master')
 
 @section('content')
-    <div class="banner-area content-top-heading text-light text-center less-paragraph text-normal">
+    <div class="content-top-heading text-light text-center less-paragraph text-normal">
         <!-- Wrapper for slides -->
         <div class="slider img-fluid">
             @foreach ($banner as $slider)
                 <div class="carousel-item">
-                    <img height="90%" width="100%" src="/storage/{{ $slider->foto }}" class="d-block w-100"
+                    <img width="100%" src="/storage/{{ $slider->foto }}" class="d-block w-100"
                         alt="{{ $slider->slug }}">
                 </div>
             @endforeach
@@ -34,7 +34,7 @@
                         </p>
                     </div>
                 </div>
-            </div>
+            </div
             <div class="row">
                 <div class="top-cat-items">
                     @foreach ($layanan as $layanan)

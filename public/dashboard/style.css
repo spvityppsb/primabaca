@@ -976,9 +976,9 @@ nav.navbar.bootsnav.navbar-transparent.pad-top {
 /* Site Heading */
 
 .site-heading {
-    margin-bottom: 60px;
+    margin-bottom: 120px;
     margin-top: -5px;
-    overflow: hidden;
+    overflow: visible;
 }
 
 .site-heading h2 {

@@ -98,6 +98,7 @@ nav.navbar.bootsnav ul.nav li.active > a {
 
 nav.navbar.bootsnav .navbar-toggle {
     background-color: transparent !important;
+    color: white;
     border: none;
     padding: 0;
     font-size: 18px;
@@ -331,7 +332,7 @@ nav.navbar.attr-border.bootsnav.sticked .attr-nav {
 }
 
 .attr-nav > ul > li > a {
-    color: #333333;
+    color: #ffffff;
     display: block;
     padding: 32px 0 !important;
     position: relative;
@@ -2424,6 +2425,8 @@ ul.cart-list > li.total > .btn {
 
     nav.navbar .navbar-brand img.logo {
         height: 30px;
+        width: 30px;
+        /* display: none; */
     }
 
     .attr-nav > ul > li > a {
