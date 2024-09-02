@@ -25,7 +25,7 @@
                                             <img width="100px" height="300px" src="/perpus/no-image.jpg" alt="Thumb">
                                         @else
                                             <img width="100px" height="300px" src="/foto_buku/{{ $data->foto_buku }}"
-                                                alt="Thumb">
+                                                alt="Thumb" style="object-fit:contain; object-position: center;min-width:100%; max-height:100%;">
                                         @endif
                                         <div class="info-title">
                                             <h4>{{ Str::title($data->nama_buku) }}</h4>

@@ -61,17 +61,17 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            </div> 
             <div class="container">
                 <div class="attr-nav">
                     <ul>
-                        <li class="search"><a href="#"><i class="fa fa-search"></i></a></li>
+                        <li class="search"><a href="#"><i class="fa fa-search" style="color: white"></i></a></li>
                     </ul>
                 </div>
                 <!-- Start Header Navigation -->
                 <div class="navbar-header">
                     <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-menu">
-                        <i class="fa fa-bars"></i>
+                        <i class="fa fa-bars" style="color: white"></i>
                     </button>
                     <a class="navbar-brand" href="/">
                         <img src="/perpus/logo.png" class="logo" alt="Logo" width="60px" height="80px">
@@ -139,7 +139,7 @@
                     <div class="col-md-12">
                         <div class="col-md-6">
                             <p>Perpustakaan <a href="#" class="text-dark" target="_blank">Primabaca </a>©
-                                Copyrights <span id="year"></span> | Repost by <a
+                                Copyrights <span id="year"></span> | Created by <a
                                     href='https://www.instagram.com/rzaykey' title='https://www.instagram.com/rzaykey'
                                     target='_blank'>rzaykey</a>
 

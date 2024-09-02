@@ -6,8 +6,8 @@
         <div class="slider img-fluid">
             @foreach ($banner as $slider)
                 <div class="carousel-item">
-                    <img width="100%" src="/storage/{{ $slider->foto }}" class="d-block w-100"
-                        alt="{{ $slider->slug }}">
+                    <img src="/storage/{{ $slider->foto }}" class="d-block w-100"
+                        alt="{{ $slider->slug }}" style="object-fit:contain; object-position: right;max-width:100%; height:auto;">
                 </div>
             @endforeach
             <a class="left carousel-control" href="#bootcarousel" data-slide="prev">
@@ -82,7 +82,7 @@
                                     <img width="100px" height="300px" src="/perpus/no-image.jpg" alt="Thumb">
                                 @else
                                     <img width="100px" height="300px" src="/foto_buku/{{ $data->foto_buku }}"
-                                        alt="Thumb">
+                                        alt="Thumb" style="object-fit:contain; object-position: center;min-width:100%; max-height:100%;">
                                 @endif
                                 <div class="info-title">
                                     <h4>{{ Str::title($data->nama_buku) }}</h4>
