@@ -7,7 +7,7 @@
             @foreach ($banner as $slider)
                 <div class="carousel-item">
                     <img src="/storage/{{ $slider->foto }}" class="d-block w-100"
-                        alt="{{ $slider->slug }}" style="object-fit:contain; object-position: right;max-width:100%; height:auto;">
+                        alt="{{ $slider->slug }}" style="object-fit:contains; object-position: right;width:100%; height:auto;">
                 </div>
             @endforeach
             <a class="left carousel-control" href="#bootcarousel" data-slide="prev">
