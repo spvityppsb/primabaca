@@ -20,6 +20,7 @@ use App\Http\Controllers\Petugas\RulePeminjamanController;
 use App\Http\Controllers\Petugas\RulePengembalianController;
 use App\Http\Controllers\Petugas\LayananController;
 use App\Http\Controllers\Petugas\SekolahController;
+use App\Http\Controllers\Petugas\ArticleController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -48,6 +49,7 @@ Route::get('/request_buku', [DashboardController::class, 'request_buku'])->name(
 Route::get('/kontak', [DashboardController::class, 'kontak'])->name('home.kontak');
 Route::get('/tentang-kami', [DashboardController::class, 'visi'])->name('home.visi');
 Route::get('/layanan', [DashboardController::class, 'layanan'])->name('home.layanan');
+Route::get('/artikel', [DashboardController::class, 'artikel'])->name('home.artikel');
 
 Auth::routes();
 
@@ -101,4 +103,5 @@ Route::middleware(['auth', 'user-access:Petugas'])->group(function () {
     Route::resource('/petugas/rules', RulePeminjamanController::class);
     Route::resource('/petugas/rule-pengembalian', RulePengembalianController::class);
     Route::resource('/petugas/layanan', LayananController::class);
+    Route::resource('/petugas/artikel', ArticleController::class);
 });

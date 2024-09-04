@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Article;
 use App\Models\Buku;
 use App\Models\User;
 use App\Models\Iklan;
@@ -106,5 +107,12 @@ class DashboardController extends Controller
             ->select('buku.*', 'rak.jenis_rak')
             ->find($id);
         return view('detail_buku', compact(['buku']));
+    }
+
+    public function artikel()
+    {
+        $artikel = Article::orderBy('created_at', 'DESC')->paginate(2);
+        // ddd($artikel);
+        return view('artikel', compact('artikel'));
     }
 }

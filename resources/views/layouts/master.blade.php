@@ -34,6 +34,7 @@
     <!-- Add the slick-theme.css if you want default styling -->
     <link rel="stylesheet" type="text/css"
         href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css" />
+
 </head>
 
 <body>
@@ -61,7 +62,7 @@
                         </div>
                     </div>
                 </div>
-            </div> 
+            </div>
             <div class="container">
                 <div class="attr-nav">
                     <ul>
@@ -101,6 +102,19 @@
                                 <li class="{{ request()->is('request_buku*') ? 'active' : '' }}">
                                     <a href="{{ route('home.request_buku') }}">Request Buku</a>
                                 </li>
+                            </ul>
+                        </li>
+                        <li class="dropdown">
+                            <a href="#"
+                                class="dropdown-toggle active {{ request()->is('berita*') ? 'active' : '' }}"
+                                data-toggle="dropdown">Berita</a>
+                            <ul class="dropdown-menu">
+                                <li class="{{ request()->is('berita*') ? 'active' : '' }}">
+                                    <a href="{{ route('home.artikel') }}">Artikel</a>
+                                </li>
+                                {{-- <li class="{{ request()->is('buku*') ? 'active' : '' }}">
+                                    <a href="{{ route('home.galeri') }}">Galeri</a>
+                                </li> --}}
                             </ul>
                         </li>
                         <li class="{{ request()->is('layanan') ? 'active' : '' }}">

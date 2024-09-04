@@ -4790,7 +4790,7 @@ body,
 }
 
 .event-area .event-items .item .thumb .date h4 {
-    color: green;
+    color: white;
     font-size: 14px;
     margin: 0;
     text-transform: uppercase;
@@ -5535,7 +5535,7 @@ body,
 }
 
 .blog-area .blog-items .thumb .date h4 {
-    color: green;
+    color: white;
     font-size: 14px;
     margin: 0;
 }

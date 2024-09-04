@@ -71,6 +71,12 @@
                 <span>UI</span>
             </div>
             <ul class="navbar-nav flex-column">
+                <li class="nav-item {{ request()->is('petugas/artikel*') ? 'active' : '' }}">
+                    <a class="nav-link" href="{{ route('artikel.index') }}">
+                        <i class="material-icons">article</i>
+                        <span class="nav-link-text">Artikel</span>
+                    </a>
+                </li>
                 <li class="nav-item {{ request()->is('petugas/iklan*') ? 'active' : '' }}">
                     <a class="nav-link" href="{{ route('iklan.index') }}">
                         <i class="material-icons">view_carousel</i>
