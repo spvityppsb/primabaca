@@ -64,13 +64,19 @@
                         </div>
                         <div class="form-row">
                             <div class="col-sm mb-10">
-                                <label for="validationCustom01">Foto Artikel</label>
-                                <input type="file" id="input-file-now" name="foto" class="dropify"
-                                    data-default-file="/foto_artikel/{{ $artikel->foto }}" />
-                                @error('foto')
-                                    <span class="invalid-feedback">{{ $message }}</span>
-                                @enderror
+                                <label for="foto">Foto Artikel</label>
+                                <input type="hidden" name="oldImage" value="{{ $artikel->foto }}">
+                                @if ($artikel->foto == null)
+                                    <input type="file" id="input-file-now" name="foto" class="dropify" />
+                                @else
+                                    <input type="file" id="input-foto-now" name="foto" class="dropify"
+                                        data-default-file="/foto_artikel/{{ $artikel->foto }}" />
+                                    @error('foto')
+                                        <span class="invalid-feedback">{{ $message }}</span>
+                                    @enderror
+                                @endif
                             </div>
+
                         </div>
                         <div class="form-row">
                             <div class="col-md-12 mb-10">

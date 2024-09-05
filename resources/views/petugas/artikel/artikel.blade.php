@@ -118,7 +118,7 @@
                                                             </span>
                                                         </span>
                                                     </a>
-                                                    <form id="aartikel-delete-form-{{ $data->id_artikel }}"
+                                                    <form id="artikel-delete-form-{{ $data->id_artikel }}"
                                                         action="{{ route('artikel.destroy', $data->id_artikel) }}"
                                                         method="POST" class="d-none">
                                                         @csrf

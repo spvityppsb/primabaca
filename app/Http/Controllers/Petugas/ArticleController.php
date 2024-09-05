@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\File;
 
 class ArticleController extends Controller
 {
@@ -93,33 +94,55 @@ class ArticleController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+
     public function update(Request $request, $id_artikel)
     {
+        // Validasi request
+        $request->validate([
+            'judul' => 'required|string|max:255',
+            'deskripsi' => 'required',
+            'foto' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048', // Validasi foto
+        ]);
+
+        // Ambil data artikel berdasarkan id
+        $article = Article::find($id_artikel);
+
+        // Jika tidak ada foto yang diunggah, update tanpa mengubah foto
         if ($request->foto == NULL) {
-            Article::find($id_artikel)->update([
+            $article->update([
                 'judul' => $request->judul,
                 'deskripsi' => $request->deskripsi,
                 'slug' => Str::slug($request->judul),
                 'created_by' => Auth::user()->name,
             ]);
 
-            return to_route('artikel.index')->with('success', 'Berhasil Memperbaharui Data Artikel');
+            return redirect()->route('artikel.index')->with('success', 'Berhasil Memperbaharui Data Artikel');
         }
 
+        // Jika ada file foto, lakukan update termasuk foto
         if ($request->hasFile('foto')) {
-            $foto_artikel = $request->file('foto')->getClientOriginalName();
-            $request->foto->move(public_path('foto_artikel'), $foto_artikel);
+            // Nama file foto dengan waktu untuk menghindari duplikasi
+            $foto_artikel = time() . '_' . $request->file('foto')->getClientOriginalName();
+
+            // Pindahkan file ke folder public/foto_artikel
+            $request->file('foto')->move(public_path('foto_artikel'), $foto_artikel);
+
+            // Hapus foto lama jika ada (opsional)
+            if ($article->foto && file_exists(public_path('foto_artikel/' . $article->foto))) {
+                unlink(public_path('foto_artikel/' . $article->foto));
+            }
+
+            // Update artikel dengan foto baru
+            $article->update([
+                'judul' => $request->judul,
+                'deskripsi' => $request->deskripsi,
+                'slug' => Str::slug($request->judul),
+                'created_by' => Auth::user()->name,
+                'foto' => $foto_artikel,
+            ]);
         }
 
-        Article::find($id_artikel)->update([
-            'judul' => $request->judul,
-            'deskripsi' => $request->deskripsi,
-            'slug' => Str::slug($request->judul),
-            'created_by' => Auth::user()->name,
-            'foto' => $foto_artikel,
-        ]);
-
-        return to_route('artikel.index')->with('success', 'Berhasil Memperbaharui Data Artikel');
+        return redirect()->route('artikel.index')->with('success', 'Berhasil Memperbaharui Data Artikel');
     }
 
     /**
