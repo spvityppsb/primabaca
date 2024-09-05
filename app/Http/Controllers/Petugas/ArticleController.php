@@ -153,10 +153,23 @@ class ArticleController extends Controller
      */
     public function destroy($id_artikel)
     {
+        // Ambil data artikel berdasarkan ID
+        $article = Article::find($id_artikel);
 
-        Article::find($id_artikel)->delete();
+        // Periksa apakah artikel ditemukan
+        if (!$article) {
+            return redirect()->route('artikel.index')->with('error', 'Artikel tidak ditemukan');
+        }
 
-        return back()->with('success', 'Berhasil Menghapus Artikel');
-        //
+        // Jika artikel memiliki foto, hapus file foto dari folder public/foto_artikel
+        if ($article->foto && file_exists(public_path('foto_artikel/' . $article->foto))) {
+            unlink(public_path('foto_artikel/' . $article->foto));
+        }
+
+        // Hapus artikel dari database
+        $article->delete();
+
+        // Redirect dengan pesan sukses
+        return redirect()->route('artikel.index')->with('success', 'Berhasil Menghapus Artikel');
     }
 }

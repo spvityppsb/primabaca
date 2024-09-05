@@ -64,7 +64,6 @@
                                     style="overflow-x:auto;">
                                     <thead>
                                         <tr>
-                                            <th>Kode</th>
                                             <th>Judul</th>
                                             <th>Slug</th>
                                             <th>Deskripsi</th>
@@ -77,8 +76,6 @@
                                     <tbody>
                                         @foreach ($article as $data)
                                             <tr>
-                                                <td class="text-center">{{ $data->id_artikel }}
-                                                </td>
                                                 <td>{{ $data->judul }}
                                                 </td>
                                                 <td>{{ $data->slug }}</td>
@@ -98,26 +95,26 @@
                                                     @endif
                                                 </td>
                                                 <td class="text-center">
+                                                    <!-- Tombol Edit -->
                                                     <a href="{{ route('artikel.edit', $data->slug) }}"
                                                         class="btn btn-icon btn-icon-circle btn-blue btn-icon-style-3"
                                                         data-toggle="tooltip" data-placement="top" title="Edit">
                                                         <span class="btn-icon-wrap">
-                                                            <span class="material-icons">
-                                                                edit
-                                                            </span>
+                                                            <span class="material-icons">edit</span>
                                                         </span>
                                                     </a>
-                                                    <a href="{{ route('artikel.destroy', $data->id_artikel) }}"
+
+                                                    <!-- Tombol Hapus dengan Konfirmasi -->
+                                                    <a href="#"
                                                         class="btn btn-icon btn-icon-circle btn-blue btn-icon-style-3"
                                                         data-toggle="tooltip" data-placement="top" title="Hapus"
-                                                        onclick="event.preventDefault();
-                                                        document.getElementById('artikel-delete-form-{{ $data->id_artikel }}').submit();">
+                                                        onclick="confirmDelete({{ $data->id_artikel }})">
                                                         <span class="btn-icon-wrap">
-                                                            <span class="material-icons">
-                                                                delete
-                                                            </span>
+                                                            <span class="material-icons">delete</span>
                                                         </span>
                                                     </a>
+
+                                                    <!-- Form untuk menghapus artikel -->
                                                     <form id="artikel-delete-form-{{ $data->id_artikel }}"
                                                         action="{{ route('artikel.destroy', $data->id_artikel) }}"
                                                         method="POST" class="d-none">
@@ -179,6 +176,19 @@
             });
         }, 2500);
     </script>
+
+    <script type="text/javascript">
+        function confirmDelete(id) {
+            // Tampilkan dialog konfirmasi
+            let confirmation = confirm('Apakah Anda yakin ingin menghapus artikel ini?');
+
+            // Jika pengguna memilih OK, submit form
+            if (confirmation) {
+                document.getElementById('artikel-delete-form-' + id).submit();
+            }
+        }
+    </script>
+
     <!-- Data Table JavaScript -->
     <script src="/theme/vendors/datatables.net/js/jquery.dataTables.min.js"></script>
     <script src="/theme/vendors/datatables.net-bs4/js/dataTables.bootstrap4.min.js"></script>
