@@ -129,7 +129,8 @@
                         @auth
                             <li class="side-menu"><a href="{{ url('/home') }}"><i class="fa fa-user"></i></a></li>
                         @else
-                            <li class="side-menu"><a href="{{ route('login') }}"><i class="fa fa-user"></i></a></li>
+                            <li class="side-menu"><a href="{{ route('login') }}" target="blank"><i
+                                        class="fa fa-user"></i></a></li>
                         @endauth
                     </ul>
                 </div><!-- /.navbar-collapse -->

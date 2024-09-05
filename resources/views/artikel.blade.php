@@ -32,8 +32,9 @@
                                 <div class="single-item">
                                     <div class="item">
                                         <div class="thumb">
-                                            <a href="#"><img width="1500px" height="700px"
-                                                    src="/foto_artikel/{{ $data->foto }}" alt="{{ $data->judul }}"></a>
+                                            <a href="#">
+                                                <img src="/foto_artikel/{{ $data->foto }}" alt="{{ $data->judul }}">
+                                            </a>
                                             <div class="date">
                                                 <h4>{{ $data->created_at }}</h4>
                                             </div>
@@ -42,8 +43,7 @@
                                             <h3>
                                                 <a href="#">{{ $data->judul }}</a>
                                             </h3>
-                                            <p>{{ Str::limit($data->deskripsi, 200) }}
-                                            </p>
+                                            <p>{{ Str::limit($data->deskripsi, 200) }}</p>
                                             <a href="#">Read More <i class="fas fa-angle-double-right"></i></a>
                                             <div class="meta">
                                                 <ul>
@@ -76,3 +76,34 @@
         </div>
     </div>
 @endsection
+<style>
+    /* Membuat gambar responsive sesuai container */
+    .thumb img {
+        width: 100%;
+        /* Pastikan gambar menggunakan 100% lebar dari kontainernya */
+        height: auto;
+        /* Menjaga rasio aspek gambar */
+        object-fit: cover;
+        /* Memastikan gambar tetap terpotong dengan baik */
+    }
+
+    /* Mobile view: ketika layar lebih kecil dari 768px */
+    @media (max-width: 768px) {
+        .thumb img {
+            width: 100%;
+            /* Pastikan gambar tetap full width */
+            height: auto;
+            /* Menjaga rasio pada tampilan mobile */
+        }
+
+        .single-item {
+            padding: 10px;
+            /* Kurangi padding untuk tampilan mobile */
+        }
+
+        .blog-content {
+            margin: 0 auto;
+            /* Pusatkan konten pada mobile */
+        }
+    }
+</style>

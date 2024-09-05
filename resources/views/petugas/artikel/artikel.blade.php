@@ -64,6 +64,7 @@
                                     style="overflow-x:auto;">
                                     <thead>
                                         <tr>
+                                            <th>No</th>
                                             <th>Judul</th>
                                             <th>Slug</th>
                                             <th>Deskripsi</th>
@@ -76,8 +77,8 @@
                                     <tbody>
                                         @foreach ($article as $data)
                                             <tr>
-                                                <td>{{ $data->judul }}
-                                                </td>
+                                                <td>{{ $loop->iteration }}</td>
+                                                <td>{{ $data->judul }}</td>
                                                 <td>{{ $data->slug }}</td>
                                                 <td>{{ $data->deskripsi }}</td>
                                                 <td>{{ Str::upper($data->created_by) }}</td>

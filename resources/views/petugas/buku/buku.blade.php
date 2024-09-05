@@ -122,8 +122,7 @@
                                                     <a href="{{ route('buku.destroy', $data->id_buku) }}"
                                                         class="btn btn-icon btn-icon-circle btn-blue btn-icon-style-3"
                                                         data-toggle="tooltip" data-placement="top" title="Hapus"
-                                                        onclick="event.preventDefault();
-                                                        document.getElementById('buku-delete-form-{{ $data->id_buku }}').submit();">
+                                                        onclick="confirmDelete(event, 'buku-delete-form-{{ $data->id_buku }}')">
                                                         <span class="btn-icon-wrap">
                                                             <span class="material-icons">
                                                                 delete
@@ -190,6 +189,15 @@
                 $(this).remove();
             });
         }, 2500);
+    </script>
+    <script>
+        function confirmDelete(event, formId) {
+            event.preventDefault(); // Menghentikan pengiriman form sementara
+            var confirmAction = confirm("Apakah Anda yakin ingin menghapus buku ini?");
+            if (confirmAction) {
+                document.getElementById(formId).submit(); // Melanjutkan penghapusan jika pengguna mengonfirmasi
+            }
+        }
     </script>
     <!-- Data Table JavaScript -->
     <script src="/theme/vendors/datatables.net/js/jquery.dataTables.min.js"></script>

@@ -6,8 +6,8 @@
         <div class="slider img-fluid">
             @foreach ($banner as $slider)
                 <div class="carousel-item">
-                    <img src="/storage/{{ $slider->foto }}" class="d-block w-100"
-                        alt="{{ $slider->slug }}" style="object-fit:contains; object-position: right;width:100%; height:auto;">
+                    <img src="/storage/{{ $slider->foto }}" class="d-block w-100" alt="{{ $slider->slug }}"
+                        style="object-fit:contains; width:100%; height:auto;">
                 </div>
             @endforeach
             <a class="left carousel-control" href="#bootcarousel" data-slide="prev">
@@ -34,29 +34,28 @@
                         </p>
                     </div>
                 </div>
-            </div
-            <div class="row">
-                <div class="top-cat-items">
-                    @foreach ($layanan as $layanan)
-                        <div class="col-md-4 col-sm-6 equal-height">
-                            <div class="item" style="background-image: url('/storage/{{ $layanan->foto }}');">
-                                <a href="#">
-                                    <div class="info">
-                                        <h4>{{ $layanan->judul }}</h4>
-                                        <span>{{ Str::limit($layanan->keterangan, 30) }}</span>
-                                    </div>
-                                </a>
-                            </div>
+            </div <div class="row">
+            <div class="top-cat-items">
+                @foreach ($layanan as $layanan)
+                    <div class="col-md-4 col-sm-6 equal-height">
+                        <div class="item" style="background-image: url('/storage/{{ $layanan->foto }}');">
+                            <a href="#">
+                                <div class="info">
+                                    <h4>{{ $layanan->judul }}</h4>
+                                    <span>{{ Str::limit($layanan->keterangan, 30) }}</span>
+                                </div>
+                            </a>
                         </div>
-                    @endforeach
-                </div>
+                    </div>
+                @endforeach
             </div>
         </div>
-        <div>
-            <div class="col text-center">
-                <a class="btn btn-primary" href="{{ route('home.layanan') }}">Lihat Semua</a>
-            </div>
+    </div>
+    <div>
+        <div class="col text-center">
+            <a class="btn btn-primary" href="{{ route('home.layanan') }}">Lihat Semua</a>
         </div>
+    </div>
     </div>
     <div class="seperator col-md-12">
         <span class="border"></span>
@@ -82,7 +81,8 @@
                                     <img width="100px" height="300px" src="/perpus/no-image.jpg" alt="Thumb">
                                 @else
                                     <img width="100px" height="300px" src="/foto_buku/{{ $data->foto_buku }}"
-                                        alt="Thumb" style="object-fit:contain; object-position: center;min-width:100%; max-height:100%;">
+                                        alt="Thumb"
+                                        style="object-fit:contain; object-position: center;min-width:100%; max-height:100%;">
                                 @endif
                                 <div class="info-title">
                                     <h4>{{ Str::title($data->nama_buku) }}</h4>
@@ -112,6 +112,17 @@
             $('.slider').slick({
                 autoplay: true,
                 autoplaySpeed: 2500,
+                dots: true,
+                arrows: true,
+                responsive: [{
+                    breakpoint: 768,
+                    settings: {
+                        slidesToShow: 1,
+                        slidesToScroll: 1,
+                        arrows: false,
+                        dots: true
+                    }
+                }]
             });
         });
     </script>
