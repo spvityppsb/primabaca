@@ -111,7 +111,7 @@ class DashboardController extends Controller
 
     public function artikel()
     {
-        $artikel = Article::orderBy('created_at', 'DESC')->paginate(2);
+        $artikel = Article::orderBy('created_at', 'DESC')->paginate(1);
         // ddd($artikel);
         return view('artikel', compact('artikel'));
     }

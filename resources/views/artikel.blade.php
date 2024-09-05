@@ -13,59 +13,64 @@
     </div>
     <!-- End Breadcrumb -->
 
-    <!-- Start Blog
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        ============================================= -->
+    <!-- Start Blog -->
     <div class="blog-area full-blog standard full-blog default-padding">
         <div class="container">
             <div class="row">
                 <div class="blog-items">
-                    <div class="blog-content col-md-10 col-md-offset-1">
-                        <!-- Single Item -->
-                        @foreach ($artikel as $data)
-                            <div class="single-item">
-                                <div class="item">
-                                    <div class="thumb">
-                                        <a href="#"><img width="1500px" height="700px"
-                                                src="/foto_artikel/{{ $data->foto }}" alt="{{ $data->judul }}"></a>
-                                        <div class="date">
-                                            <h4>{{ $data->created_at }}</h4>
+                    @if ($artikel->count() == 0)
+                        <div class="row">
+                            <div class="col-md-12"
+                                style="display: flex; justify-content: center; align-items: center; height: 50vh;">
+                                <img src="https://i.imgur.com/qIufhof.png" alt="No data result image">
+                            </div>
+                        </div>
+                    @else
+                        <div class="blog-content col-md-10 col-md-offset-1">
+                            <!-- Single Item -->
+                            @foreach ($artikel as $data)
+                                <div class="single-item">
+                                    <div class="item">
+                                        <div class="thumb">
+                                            <a href="#"><img width="1500px" height="700px"
+                                                    src="/foto_artikel/{{ $data->foto }}" alt="{{ $data->judul }}"></a>
+                                            <div class="date">
+                                                <h4>{{ $data->created_at }}</h4>
+                                            </div>
                                         </div>
-                                    </div>
-                                    <div class="info">
-                                        <h3>
-                                            <a href="#">{{ $data->judul }}</a>
-                                        </h3>
-                                        <p>{{ Str::limit($data->deskripsi, 200) }}
-                                        </p>
-                                        <a href="#">Read More <i class="fas fa-angle-double-right"></i></a>
-                                        <div class="meta">
-                                            <ul>
-                                                <li>
-                                                    <a href="#"><i class="fas fa-user"></i>
-                                                        {{ $data->created_by }}</a>
-                                                </li>
-                                            </ul>
+                                        <div class="info">
+                                            <h3>
+                                                <a href="#">{{ $data->judul }}</a>
+                                            </h3>
+                                            <p>{{ Str::limit($data->deskripsi, 200) }}
+                                            </p>
+                                            <a href="#">Read More <i class="fas fa-angle-double-right"></i></a>
+                                            <div class="meta">
+                                                <ul>
+                                                    <li>
+                                                        <a href="#"><i class="fas fa-user"></i>
+                                                            {{ $data->created_by }}</a>
+                                                    </li>
+                                                </ul>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
+                            @endforeach
+                            <!-- Single Item -->
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <nav aria-label="navigation">
+                                        <ul class="pagination"> {{ $artikel->links() }}
+                                            Showing {{ $artikel->count() }} From {{ $artikel->total() }}
+                                        </ul>
+                                    </nav>
+                                </div>
                             </div>
-                        @endforeach
-                        <!-- Single Item -->
-                        <!-- Pagination -->
-                        <div class="row">
-                            <div class="col-md-10">
-                                <nav aria-label="navigation">
-                                    <ul class="pagination">
-                                        Showing {{ $artikel->count() }} From {{ $artikel->total() }}
-                                    </ul>
-                                </nav>
-                            </div>
-                            <div class="col-md-2 float-left">
-                                {{ $artikel->links() }}
-                            </div>
+                            <!-- Pagination -->
                         </div>
-                    </div>
-                    <!-- End Blog Content -->
+                        <!-- End Blog Content -->
+                    @endif
                 </div>
             </div>
         </div>
