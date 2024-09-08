@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Article;
+use App\Models\RequestBuku;
 use App\Models\Buku;
 use App\Models\User;
 use App\Models\Iklan;
@@ -75,6 +76,23 @@ class DashboardController extends Controller
     public function request_buku()
     {
         return view('request_buku');
+    }
+
+    public function request_buku_store(Request $request)
+    {
+        // Validasi input
+        $validated = $request->validate([
+            'nama' => 'required|string|max:255',
+            'sekolah' => 'required|string|max:255',
+            'judul_buku' => 'required|string|max:255',
+            'pengarang' => 'required|string|max:255',
+            'penerbit' => 'required|string|max:255',
+        ]);
+
+        // Simpan ke database
+        RequestBuku::create($validated);
+
+        return redirect()->route('home.request_buku')->with('success', 'Request buku berhasil dikirim!');
     }
 
     public function cari(Request $request)

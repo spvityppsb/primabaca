@@ -3,7 +3,7 @@
 @section('content')
     <div class="mt-20 container-fluid px-xxl-65 px-xl-20">
         <div class="hk-pg-header">
-            <h4 class="hk-pg-title"><span class="pg-title-icon"><i class="fa fa-newspaper-o"></i></span>Artikel</h4>
+            <h4 class="hk-pg-title"><span class="pg-title-icon"><i class="fa fa-book"></i></span>Buku Request</h4>
         </div>
 
         @if (session('success'))
@@ -20,14 +20,6 @@
 
         <div class="row">
             <div class="col-xl-12">
-                <a href="{{ route('artikel.create') }}" class="mb-20 btn btn-primary btn-wth-icon btn-sm">
-                    <span class="icon-label">
-                        <span class="material-icons">
-                            create_new_folder
-                        </span>
-                    </span>
-                    <span class="btn-text">Tambah Artikel Baru</span>
-                </a>
                 {{-- <button class="mb-20 btn btn-light btn-wth-icon btn-sm" data-toggle="modal" data-target="#importExcel"><span
                         class="icon-label">
                         <span class="material-icons">
@@ -53,9 +45,8 @@
                     <span class="btn-text">PDF</span>
                 </a>
                 <section class="hk-sec-wrapper">
-                    <h5 class="hk-sec-title">Data Artikel</h5>
-                    <p class="mb-20">Data Artikel Yang Terdaftar Di Perpustakaan Primabaca
-                        YPPSB
+                    <h5 class="hk-sec-title">Data Request Buku</h5>
+                    <p class="mb-20">Data Buku Yang Terdaftar Di Perpustakaan dan Dapat Di Pinjam Anggota Primabaca YPPSB
                     </p>
                     <div class="row">
                         <div class="col-sm">
@@ -65,64 +56,25 @@
                                     <thead>
                                         <tr>
                                             <th>No</th>
-                                            <th>Judul</th>
-                                            <th>Slug</th>
-                                            <th>Deskripsi</th>
-                                            <th>Penulis</th>
-                                            <th>Rilis</th>
-                                            <th>Foto</th>
-                                            <th class="text-center">Action</th>
+                                            <th>Nama</th>
+                                            <th>Asal Sekolah/Unit/Instansi</th>
+                                            <th>Judul Buku</th>
+                                            <th>Penerbit Buku</th>
+                                            <th>Penulis Buku</th>
+                                            <th>Tanggal Request</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @foreach ($article as $data)
+                                        @foreach ($request_buku as $data)
                                             <tr>
+
                                                 <td>{{ $loop->iteration }}</td>
-                                                <td>{{ $data->judul }}</td>
-                                                <td>{{ $data->slug }}</td>
-                                                <td>{{ $data->deskripsi }}</td>
-                                                <td>{{ Str::upper($data->created_by) }}</td>
-                                                <td>
-                                                    <span
-                                                        class="badge badge-primary">{{ Str::title($data->created_at) }}</span>
-                                                </td>
-                                                <td class="text-center">
-                                                    @if ($data->foto == null)
-                                                        <img height="60" width="60" src="/perpus/no-image.jpg"
-                                                            alt="Thumb">
-                                                    @else
-                                                        <img src="/foto_artikel/{{ $data->foto }}" height="60"
-                                                            width="60" alt="{{ $data->slug }}">
-                                                    @endif
-                                                </td>
-                                                <td class="text-center">
-                                                    <!-- Tombol Edit -->
-                                                    <a href="{{ route('artikel.edit', $data->slug) }}"
-                                                        class="btn btn-icon btn-icon-circle btn-blue btn-icon-style-3"
-                                                        data-toggle="tooltip" data-placement="top" title="Edit">
-                                                        <span class="btn-icon-wrap">
-                                                            <span class="material-icons">edit</span>
-                                                        </span>
-                                                    </a>
-
-                                                    <!-- Tombol Hapus dengan Konfirmasi -->
-                                                    <a href="#"
-                                                        class="btn btn-icon btn-icon-circle btn-blue btn-icon-style-3"
-                                                        data-toggle="tooltip" data-placement="top" title="Hapus"
-                                                        onclick="confirmDelete({{ $data->id_artikel }})">
-                                                        <span class="btn-icon-wrap">
-                                                            <span class="material-icons">delete</span>
-                                                        </span>
-                                                    </a>
-
-                                                    <!-- Form untuk menghapus artikel -->
-                                                    <form id="artikel-delete-form-{{ $data->id_artikel }}"
-                                                        action="{{ route('artikel.destroy', $data->id_artikel) }}"
-                                                        method="POST" class="d-none">
-                                                        @csrf
-                                                        @method('delete')
-                                                    </form>
-                                                </td>
+                                                <td>{{ $data->nama }}</td>
+                                                <td>{{ $data->sekolah }}</td>
+                                                <td>{{ $data->judul_buku }}</td>
+                                                <td>{{ $data->pengarang }}</td>
+                                                <td>{{ $data->penerbit }}</td>
+                                                <td>{{ $data->created_at }}</td>
                                             </tr>
                                         @endforeach
                                     </tbody>
@@ -177,19 +129,6 @@
             });
         }, 2500);
     </script>
-
-    <script type="text/javascript">
-        function confirmDelete(id) {
-            // Tampilkan dialog konfirmasi
-            let confirmation = confirm('Apakah Anda yakin ingin menghapus artikel ini?');
-
-            // Jika pengguna memilih OK, submit form
-            if (confirmation) {
-                document.getElementById('artikel-delete-form-' + id).submit();
-            }
-        }
-    </script>
-
     <!-- Data Table JavaScript -->
     <script src="/theme/vendors/datatables.net/js/jquery.dataTables.min.js"></script>
     <script src="/theme/vendors/datatables.net-bs4/js/dataTables.bootstrap4.min.js"></script>

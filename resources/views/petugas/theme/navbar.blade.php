@@ -48,6 +48,25 @@
             </ul>
             <hr class="nav-separator">
             <div class="nav-header">
+                <span>Media</span>
+                <span>UI</span>
+            </div>
+            <ul class="navbar-nav flex-column">
+                <li class="nav-item {{ request()->is('petugas/artikel*') ? 'active' : '' }}">
+                    <a class="nav-link" href="{{ route('artikel.index') }}">
+                        <i class="material-icons">article</i>
+                        <span class="nav-link-text">Artikel</span>
+                    </a>
+                </li>
+                <li class="nav-item {{ request()->is('petugas/request-buku*') ? 'active' : '' }}">
+                    <a class="nav-link" href="{{ route('request_buku') }}">
+                        <i class="material-icons">book</i>
+                        <span class="nav-link-text">Request Buku</span>
+                    </a>
+                </li>
+            </ul>
+            <hr class="nav-separator">
+            <div class="nav-header">
                 <span>Petugas</span>
                 <span>UI</span>
             </div>
@@ -71,12 +90,6 @@
                 <span>UI</span>
             </div>
             <ul class="navbar-nav flex-column">
-                <li class="nav-item {{ request()->is('petugas/artikel*') ? 'active' : '' }}">
-                    <a class="nav-link" href="{{ route('artikel.index') }}">
-                        <i class="material-icons">article</i>
-                        <span class="nav-link-text">Artikel</span>
-                    </a>
-                </li>
                 <li class="nav-item {{ request()->is('petugas/iklan*') ? 'active' : '' }}">
                     <a class="nav-link" href="{{ route('iklan.index') }}">
                         <i class="material-icons">view_carousel</i>

@@ -1,7 +1,7 @@
 @extends('petugas.theme.master')
 
 @section('content')
-    <div class="container-fluid px-xxl-65 px-xl-20 mt-20">
+    <div class="mt-20 container-fluid px-xxl-65 px-xl-20">
         <div class="hk-pg-header">
             <h4 class="hk-pg-title"><span class="pg-title-icon"><i class="fa fa-graduation-cap"></i></span>Anggota</h4>
         </div>
@@ -24,7 +24,7 @@
                     <p class="mb-20">Data Anggota Yang Terdaftar Sebagai Anggota Perpustakaan dan Dapat Melakukan
                         Peminjaman
                         Buku</p>
-                    <a href="{{ route('siswa.create') }}" class="btn btn-primary btn-wth-icon btn-sm mb-20">
+                    <a href="{{ route('siswa.create') }}" class="mb-20 btn btn-primary btn-wth-icon btn-sm">
                         <span class="icon-label">
                             <span class="material-icons">
                                 person_add
@@ -32,7 +32,7 @@
                         </span>
                         <span class="btn-text">Tambah Anggota Baru</span>
                     </a>
-                    <button class="btn btn-light btn-wth-icon btn-sm mb-20" data-toggle="modal"
+                    <button class="mb-20 btn btn-light btn-wth-icon btn-sm" data-toggle="modal"
                         data-target="#importExcel"><span class="icon-label">
                             <span class="material-icons">
                                 file_upload
@@ -40,7 +40,7 @@
                         </span>
                         <span class="btn-text">Import Excel</span>
                     </button>
-                    <a href="{{ route('laporan.anggota_excel') }}" class="btn btn-link btn-wth-icon btn-sm mb-20">
+                    <a href="{{ route('laporan.anggota_excel') }}" class="mb-20 btn btn-link btn-wth-icon btn-sm">
                         <span class="icon-label">
                             <span class="material-icons">
                                 file_download
@@ -48,7 +48,7 @@
                         </span>
                         <span class="btn-text">Export Excel</span>
                     </a>
-                    <a href="" class="btn btn-link btn-wth-icon btn-sm mb-20">
+                    <a href="" class="mb-20 btn btn-link btn-wth-icon btn-sm">
                         <span class="icon-label">
                             <span class="material-icons">
                                 file_download
@@ -96,7 +96,7 @@
                                                 </td>
                                                 <td>
                                                     {{ Str::upper($data->alamat) }}<br>
-                                                    <span class="badge badge-soft-info badge-pill  mt-15 mr-10">
+                                                    <span class="mr-10 badge badge-soft-info badge-pill mt-15">
                                                         {{ Str::upper($data->telp) }}
                                                     </span>
                                                 </td>

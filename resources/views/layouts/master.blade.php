@@ -127,7 +127,8 @@
                             <a href="{{ route('home.kontak') }}">Kontak</a>
                         </li>
                         @auth
-                            <li class="side-menu"><a href="{{ url('/home') }}"><i class="fa fa-user"></i></a></li>
+                            <li class="side-menu"><a href="{{ url('/petugas/dashboard') }}" target="blank"><i
+                                        class="fa fa-user"></i></a></li>
                         @else
                             <li class="side-menu"><a href="{{ route('login') }}" target="blank"><i
                                         class="fa fa-user"></i></a></li>
