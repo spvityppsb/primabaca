@@ -58,6 +58,12 @@
                         <span class="nav-link-text">Artikel</span>
                     </a>
                 </li>
+                <li class="nav-item {{ request()->is('petugas/galeri*') ? 'active' : '' }}">
+                    <a class="nav-link" href="{{ route('galeri.index') }}">
+                        <i class="material-icons">video_library</i>
+                        <span class="nav-link-text">Galeri</span>
+                    </a>
+                </li>
                 <li class="nav-item {{ request()->is('petugas/request-buku*') ? 'active' : '' }}">
                     <a class="nav-link" href="{{ route('request_buku') }}">
                         <i class="material-icons">book</i>

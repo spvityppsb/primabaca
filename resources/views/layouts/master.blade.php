@@ -112,9 +112,12 @@
                                 <li class="{{ request()->is('berita*') ? 'active' : '' }}">
                                     <a href="{{ route('home.artikel') }}">Artikel</a>
                                 </li>
-                                {{-- <li class="{{ request()->is('buku*') ? 'active' : '' }}">
-                                    <a href="{{ route('home.galeri') }}">Galeri</a>
-                                </li> --}}
+                                <li class="{{ request()->is('berita*') ? 'active' : '' }}">
+                                    <a href="{{ route('home.foto') }}">Foto</a>
+                                </li>
+                                <li class="{{ request()->is('berita*') ? 'active' : '' }}">
+                                    <a href="{{ route('home.video') }}">Video</a>
+                                </li>
                             </ul>
                         </li>
                         <li class="{{ request()->is('layanan') ? 'active' : '' }}">

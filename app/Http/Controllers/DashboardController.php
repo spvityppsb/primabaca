@@ -6,6 +6,7 @@ use App\Models\Article;
 use App\Models\RequestAnggota;
 use App\Models\RequestBuku;
 use App\Models\Buku;
+use App\Models\Galeri;
 use App\Models\User;
 use App\Models\Iklan;
 use App\Models\Kepsek;
@@ -172,4 +173,52 @@ class DashboardController extends Controller
 
         return redirect()->back()->with('success', 'Request anggota berhasil dikirim.');
     }
-}   
+
+    public function video()
+    {
+        // Ambil data galeri yang memiliki jenis media 'foto' dan urutkan berdasarkan tanggal pembuatan
+        $galeri = Galeri::where('jenis_media', 'video')
+            ->orderBy('created_at', 'DESC')
+            ->paginate(6);
+
+        // Map data untuk mendapatkan foto pertama dari setiap galeri
+        $videoPertama = $galeri->getCollection()->map(function ($item) {
+            // Cek apakah file adalah array dan memiliki elemen
+            if (is_array($item->file) && count($item->file) > 0) {
+                $item->first_file = $item->file[0]; // Ambil file pertama
+            } else {
+                $item->first_file = null; // Set ke null jika tidak ada foto
+            }
+            return $item;
+        });
+
+        // Mengganti koleksi asli dengan koleksi yang telah dimodifikasi
+        $galeri->setCollection($videoPertama);
+
+        return view('video', compact('videoPertama'));
+    }
+
+    public function foto()
+    {
+        // Ambil data galeri yang memiliki jenis media 'foto' dan urutkan berdasarkan tanggal pembuatan
+        $galeri = Galeri::where('jenis_media', 'foto')
+            ->orderBy('created_at', 'DESC')
+            ->paginate(6); // Use 6 items per page (or any number suitable for your needs)
+
+        // Map data untuk mendapatkan foto pertama dari setiap galeri
+        $fotoPertama = $galeri->getCollection()->map(function ($item) {
+            // Cek apakah file adalah array dan memiliki elemen
+            if (is_array($item->file) && count($item->file) > 0) {
+                $item->first_file = $item->file[0]; // Ambil file pertama
+            } else {
+                $item->first_file = null; // Set ke null jika tidak ada foto
+            }
+            return $item;
+        });
+
+        // Mengganti koleksi asli dengan koleksi yang telah dimodifikasi
+        $galeri->setCollection($fotoPertama);
+
+        return view('foto', compact('galeri'));
+    }
+}

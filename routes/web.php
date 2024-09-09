@@ -21,6 +21,7 @@ use App\Http\Controllers\Petugas\SekolahController;
 use App\Http\Controllers\Petugas\ArticleController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\Petugas\BukuPetugasController;
+use App\Http\Controllers\Petugas\GaleriController;
 use App\Http\Controllers\Petugas\RequestBukuController;
 use App\Http\Controllers\Petugas\RequestAnggotaPetugasController;
 use Illuminate\Support\Facades\Auth;
@@ -50,6 +51,8 @@ Route::group(['prefix' => 'home'], function () {
     Route::get('/tentang-kami', [DashboardController::class, 'visi'])->name('home.visi');
     Route::get('/layanan', [DashboardController::class, 'layanan'])->name('home.layanan');
     Route::get('/artikel', [DashboardController::class, 'artikel'])->name('home.artikel');
+    Route::get('/video', [DashboardController::class, 'video'])->name('home.video');
+    Route::get('/foto', [DashboardController::class, 'foto'])->name('home.foto');
     Route::get('/request_anggota', [DashboardController::class, 'request_anggota'])->name('home.request_anggota');
     Route::post('/request_anggota_store', [DashboardController::class, 'request_anggota_store'])
         ->name('home.request_anggota_store')
@@ -77,6 +80,7 @@ Route::middleware(['auth', 'user-access:Petugas'])->prefix('petugas')->group(fun
         'rule-pengembalian' => RulePengembalianController::class,
         'layanan' => LayananController::class,
         'artikel' => ArticleController::class,
+        'galeri' => GaleriController::class,
     ]);
 
     // Route Peminjaman and Pengembalian with additional protections
@@ -116,4 +120,5 @@ Route::middleware(['auth', 'user-access:Petugas'])->prefix('petugas')->group(fun
 
     // Request anggota
     Route::get('/request-anggota', [RequestAnggotaPetugasController::class, 'index'])->name('request_anggota');
+    Route::delete('/galeri/{id}/file/{file}', [GaleriController::class, 'deleteFile'])->name('galeri.deleteFile');
 });
