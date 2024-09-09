@@ -1,7 +1,7 @@
 @extends('petugas.theme.master')
 
 @section('content')
-    <div class="container-fluid px-xxl-65 px-xl-20 mt-20">
+    <div class="mt-20 container-fluid px-xxl-65 px-xl-20">
         <div class="hk-pg-header">
             <h4 class="hk-pg-title"><span class="pg-title-icon"><i class="fa fa-book"></i></span>Artikel</h4>
         </div>
@@ -20,7 +20,7 @@
                         @csrf
                         @method('post')
                         <div class="form-row">
-                            <div class="col-md-12 mb-10">
+                            <div class="mb-10 col-md-12">
                                 <label for="validationCustom01">Judul Artikel </label>
                                 <input type="text" name="judul"
                                     class="form-control @error('judul') is-invalid @enderror" id="validationCustom01"
@@ -31,7 +31,7 @@
                             </div>
                         </div>
                         <div class="form-row">
-                            <div class="col-md-6 mb-10">
+                            <div class="mb-10 col-md-6">
                                 <label for="validationCustom01">Penulis</label>
                                 <input type="text" name="penulis"
                                     class="form-control @error('penulis') is-invalid @enderror"
@@ -42,7 +42,7 @@
                             </div>
                         </div>
                         <div class="form-row">
-                            <div class="col-sm mb-10">
+                            <div class="mb-10 col-sm">
                                 <label for="validationCustom01">Foto Artikel</label>
                                 <span class="badge badge-primary">1500px x 700px</span>
                                 <input type="file" id="input-file-now" name="foto" class="dropify" />
@@ -52,7 +52,7 @@
                             </div>
                         </div>
                         <div class="form-row">
-                            <div class="col-md-12 mb-10">
+                            <div class="mb-10 col-md-12">
                                 <label for="validationCustom01">Isi Artikel</label>
                                 <textarea class="form-control @error('deskripsi') is-invalid @enderror" name="deskripsi"
                                     placeholder="Masukkan Isi Artikel">{{ old('deskripsi') }}</textarea>
@@ -61,7 +61,7 @@
                                 @enderror
                             </div>
                         </div>
-                        <button class="btn btn-primary btn-wth-icon mt-10 w-100" type="submit">
+                        <button class="mt-10 btn btn-primary btn-wth-icon w-100" type="submit">
                             <span class="btn-text">Tambahkan Artikel Baru</span>
                         </button>
                     </form>

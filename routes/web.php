@@ -49,6 +49,10 @@ Route::group(['prefix' => 'home'], function () {
     Route::get('/tentang-kami', [DashboardController::class, 'visi'])->name('home.visi');
     Route::get('/layanan', [DashboardController::class, 'layanan'])->name('home.layanan');
     Route::get('/artikel', [DashboardController::class, 'artikel'])->name('home.artikel');
+    Route::get('/request_anggota', [DashboardController::class, 'request_anggota'])->name('home.request_anggota');
+    Route::post('/request_anggota_store', [DashboardController::class, 'request_anggota_store'])
+        ->name('home.request_anggota_store')
+        ->middleware('throttle:10,1'); // Rate limiting: 10 requests per minute
 });
 
 Auth::routes();

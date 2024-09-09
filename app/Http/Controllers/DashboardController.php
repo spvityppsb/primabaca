@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Article;
+use App\Models\RequestAnggota;
 use App\Models\RequestBuku;
 use App\Models\Buku;
 use App\Models\User;
@@ -132,5 +133,34 @@ class DashboardController extends Controller
         $artikel = Article::orderBy('created_at', 'DESC')->paginate(1);
         // ddd($artikel);
         return view('artikel', compact('artikel'));
+    }
+
+    public function request_anggota()
+    {
+        return view('request_anggota');
+    }
+
+    public function request_anggota_store(Request $request)
+    {
+        // Validasi input untuk mencegah injeksi kode atau data yang berbahaya
+        $validated = $request->validate([
+            'name' => 'required|string|max:255',
+            'alamat' => 'required|string|max:255',
+            'email' => 'required|email|unique:request_anggota',
+            'unit' => 'required|string',
+            'pekerjaan' => 'required|string',
+            'no_hp' => 'required|numeric',
+            'foto' => 'required|image|mimes:jpeg,png,jpg|max:2048',
+        ]);
+
+        // Upload foto dengan aman
+        if ($request->hasFile('foto')) {
+            $validated['foto'] = $request->file('foto')->store('foto_request_anggota');
+        }
+        // ddd($validated);
+        // Simpan data ke database
+        RequestAnggota::create($validated);
+
+        return redirect()->back()->with('success', 'Request anggota berhasil dikirim.');
     }
 }
