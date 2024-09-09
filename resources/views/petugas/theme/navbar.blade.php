@@ -64,6 +64,12 @@
                         <span class="nav-link-text">Request Buku</span>
                     </a>
                 </li>
+                <li class="nav-item {{ request()->is('petugas/request-anggota*') ? 'active' : '' }}">
+                    <a class="nav-link" href="{{ route('request_anggota') }}">
+                        <i class="material-icons">loyalty</i>
+                        <span class="nav-link-text">Request Anggota</span>
+                    </a>
+                </li>
             </ul>
             <hr class="nav-separator">
             <div class="nav-header">

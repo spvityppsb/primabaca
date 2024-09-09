@@ -153,9 +153,18 @@ class DashboardController extends Controller
             'foto' => 'required|image|mimes:jpeg,png,jpg|max:2048',
         ]);
 
-        // Upload foto dengan aman
         if ($request->hasFile('foto')) {
-            $validated['foto'] = $request->file('foto')->store('foto_request_anggota');
+            // Ambil file yang diupload
+            $file = $request->file('foto');
+
+            // Membuat nama file unik dengan menambahkan timestamp untuk menghindari bentrok nama
+            $filename = time() . '_' . $file->getClientOriginalName();
+
+            // Pindahkan file ke folder public/foto_request_anggota
+            $file->move(public_path('foto_request_anggota'), $filename);
+
+            // Simpan nama file ke dalam $validated array
+            $validated['foto'] = 'foto_request_anggota/' . $filename;
         }
         // ddd($validated);
         // Simpan data ke database
@@ -163,4 +172,4 @@ class DashboardController extends Controller
 
         return redirect()->back()->with('success', 'Request anggota berhasil dikirim.');
     }
-}
+}   

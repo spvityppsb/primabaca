@@ -22,6 +22,7 @@ use App\Http\Controllers\Petugas\ArticleController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\Petugas\BukuPetugasController;
 use App\Http\Controllers\Petugas\RequestBukuController;
+use App\Http\Controllers\Petugas\RequestAnggotaPetugasController;
 use Illuminate\Support\Facades\Auth;
 
 /*
@@ -111,4 +112,8 @@ Route::middleware(['auth', 'user-access:Petugas'])->prefix('petugas')->group(fun
 
     // Request buku
     Route::get('/request-buku', [RequestBukuController::class, 'index'])->name('request_buku');
+
+
+    // Request anggota
+    Route::get('/request-anggota', [RequestAnggotaPetugasController::class, 'index'])->name('request_anggota');
 });

@@ -95,7 +95,7 @@
                                     <label class="control-label col-sm-3" for="no_hp">Nomor HP:</label>
                                     <div class="col-sm-9">
                                         <input type="text" name="no_hp" class="form-control" id="no_hp"
-                                            placeholder="Masukkan nomor HP" required>
+                                            placeholder="Masukkan nomor HP" value="{{ old('no_hp') }}" required>
                                         @error('no_hp')
                                             <small class="text-danger">{{ $message }}</small>
                                         @enderror
