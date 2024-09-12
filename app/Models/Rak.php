@@ -13,4 +13,10 @@ class Rak extends Model
     protected $fillable = [
         'jenis_rak'
     ];
+
+
+    public function bukus()
+    {
+        return $this->hasMany(Buku::class, 'rak', 'id_rak');
+    }
 }

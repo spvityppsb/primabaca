@@ -6,7 +6,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
-                    <h1>Galeri Foto</h1>
+                    <h1>Galeri Video</h1>
                 </div>
             </div>
         </div>
@@ -25,7 +25,8 @@
                             <div class="mb-4 col-md-6">
                                 <div class="single-item">
                                     <div class="thumb">
-                                        <a href="#">
+                                        <!-- Link to trigger video popup -->
+                                        <a href="/uploads/galeri/{{ $data->first_file }}" class="popup-video">
                                             <video width="100%" controls>
                                                 <source src="/uploads/galeri/{{ $data->first_file }}" type="video/mp4"
                                                     alt="{{ $data->slug }}">
@@ -40,10 +41,8 @@
                                         <h3>
                                             <a href="#">{{ $data->nama_media }}</a>
                                         </h3>
-                                        <a href="#">Lihat Detail <i class="fas fa-angle-double-right"></i></a>
-                                        <div class="meta">
-                                        </div>
                                     </div>
+                                    <br><br>
                                 </div>
                             </div>
                         @endif
@@ -105,4 +104,34 @@
             }
         }
     </style>
+@endsection
+
+@section('scripts')
+    <!-- Magnific Popup CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/magnific-popup.min.css">
+
+    <!-- Magnific Popup JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/jquery.magnific-popup.min.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            // Initialize Magnific Popup for video popups
+            $('.popup-video').magnificPopup({
+                type: 'iframe',
+                gallery: {
+                    enabled: true // Enables gallery mode
+                },
+                iframe: {
+                    patterns: {
+                        mp4: {
+                            index: '.mp4',
+                            id: null,
+                            src: '%id%'
+                        }
+                    }
+                }
+            });
+        });
+    </script>
 @endsection

@@ -12,7 +12,6 @@
         </div>
     </div>
     <!-- End Breadcrumb -->
-
     <!-- Start Gallery -->
     <div class="gallery-area default-padding">
         <div class="container">
@@ -28,19 +27,24 @@
                             <div class="mb-4 col-md-4">
                                 <div class="single-item">
                                     <div class="thumb">
-                                        <a href="#">
+                                        <a href="{{ route('home.detail_foto', $data->slug) }}">
                                             <img src="/uploads/galeri/{{ $data->first_file }}" alt="{{ $data->slug }}"
-                                                class="img-fluid">
+                                                class="mb-4 img-fluid">
                                         </a>
+                                        <br>
+                                        <br>
+                                        <hr>
+                                        <h3>
+                                            <a
+                                                href="{{ route('home.detail_foto', $data->slug) }}">{{ $data->nama_media }}</a>
+                                        </h3>
+                                    </div>
+                                    <div class="info">
                                         <div class="date">
                                             <h4>{{ $data->created_at->format('d M Y') }}</h4>
                                         </div>
-                                    </div>
-                                    <div class="info">
-                                        <h3>
-                                            <a href="#">{{ $data->nama_media }}</a>
-                                        </h3>
-                                        <a href="#">Lihat Detail <i class="fas fa-angle-double-right"></i></a>
+                                        <a href="{{ route('home.detail_foto', $data->slug) }}">Lihat Detail <i
+                                                class="fas fa-angle-double-right"></i></a>
                                         <div class="meta">
                                         </div>
                                     </div>

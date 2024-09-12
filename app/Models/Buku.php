@@ -22,4 +22,9 @@ class Buku extends Model
         'tahun_terbit',
         'isbn',
     ];
+
+    public function rak()
+    {
+        return $this->belongsTo(Rak::class, 'rak', 'id_rak');
+    }
 }

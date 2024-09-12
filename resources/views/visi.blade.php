@@ -1,7 +1,7 @@
 @extends('layouts.master')
 
 @section('content')
-    <div class="breadcrumb-area shadow dark text-center bg-fixed text-light"
+    <div class="text-center bg-fixed shadow breadcrumb-area dark text-light"
         style="background-image: url(/perpus/img-1.jpg);">
         <div class="container">
             <div class="row">
@@ -17,7 +17,7 @@
             <div class="row">
                 <div class="about-info">
                     <div class="col-md-6 thumb">
-                        <img src="storage/{{ $about->foto }}" alt="Thumb" class="text-center">
+                        <img src="/storage/{{ $about->foto }}" alt="Thumb" class="text-center">
                     </div>
                     <div class="col-md-6 info">
                         <h5>Profile Perpustakaan</h5>
@@ -38,7 +38,7 @@
         <div class="container-full">
             <div class="row">
                 <div class="col-md-5 col-sm-offset-1 content">
-                    <div class="site-heading text-left">
+                    <div class="text-left site-heading">
                         <h2>Visi - Misi</h2>
                     </div>
                     <!-- item -->
@@ -70,8 +70,8 @@
                     </div>
                     <!-- item -->
                 </div>
-                <div class="col-md-5 thumb bg-cover">
-                    <img src="storage/{{ $about->foto_visi }}" alt="visi misi primabaca">
+                <div class="bg-cover col-md-5 thumb">
+                    <img src="/storage/{{ $about->foto_visi }}" alt="visi misi primabaca">
                     <!-- item -->
                 </div>
             </div>
@@ -80,12 +80,12 @@
 
     <section id="advisor" class="advisor-area default-padding">
         <div class="container">
-            <div class="site-heading text-center">
+            <div class="text-center site-heading">
                 <h2>Petugas Perpustakaan</h2>
             </div>
             <div class="row">
                 <div class="col-md-12">
-                    <div class="advisor-carousel owl-carousel owl-theme text-center text-light">
+                    <div class="text-center advisor-carousel owl-carousel owl-theme text-light">
                         <!-- Single Item -->
                         @foreach ($petugas as $petugas)
                             <div class="advisor-item">

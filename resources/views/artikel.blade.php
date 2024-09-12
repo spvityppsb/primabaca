@@ -32,7 +32,7 @@
                                 <div class="single-item">
                                     <div class="item">
                                         <div class="thumb">
-                                            <a href="#">
+                                            <a href="{{ route('home.detail_artikel', $data->slug) }}">
                                                 <img src="/foto_artikel/{{ $data->foto }}" alt="{{ $data->slug }}">
                                             </a>
                                             <div class="date">
@@ -41,7 +41,8 @@
                                         </div>
                                         <div class="info">
                                             <h3>
-                                                <a href="#">{{ $data->judul }}</a>
+                                                <a
+                                                    href="{{ route('home.detail_artikel', $data->slug) }}">{{ $data->judul }}</a>
                                             </h3>
                                             <p>{{ Str::limit($data->deskripsi, 200) }}</p>
                                             <a href="{{ route('home.detail_artikel', $data->slug) }}">Read More <i
