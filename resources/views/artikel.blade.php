@@ -1,7 +1,7 @@
 @extends('layouts.master')
 
 @section('content')
-    <div class="breadcrumb-area shadow dark text-center bg-fixed text-light"
+    <div class="text-center bg-fixed shadow breadcrumb-area dark text-light"
         style="background-image: url(/perpus/img-1.jpg);">
         <div class="container">
             <div class="row">
@@ -14,7 +14,7 @@
     <!-- End Breadcrumb -->
 
     <!-- Start Blog -->
-    <div class="blog-area full-blog standard full-blog default-padding">
+    <div class="blog-area full-blog standard default-padding">
         <div class="container">
             <div class="row">
                 <div class="blog-items">
@@ -33,7 +33,7 @@
                                     <div class="item">
                                         <div class="thumb">
                                             <a href="#">
-                                                <img src="/foto_artikel/{{ $data->foto }}" alt="{{ $data->judul }}">
+                                                <img src="/foto_artikel/{{ $data->foto }}" alt="{{ $data->slug }}">
                                             </a>
                                             <div class="date">
                                                 <h4>{{ $data->created_at }}</h4>
@@ -44,7 +44,8 @@
                                                 <a href="#">{{ $data->judul }}</a>
                                             </h3>
                                             <p>{{ Str::limit($data->deskripsi, 200) }}</p>
-                                            <a href="#">Read More <i class="fas fa-angle-double-right"></i></a>
+                                            <a href="{{ route('home.detail_artikel', $data->slug) }}">Read More <i
+                                                    class="fas fa-angle-double-right"></i></a>
                                             <div class="meta">
                                                 <ul>
                                                     <li>

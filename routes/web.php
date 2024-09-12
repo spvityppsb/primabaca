@@ -51,6 +51,7 @@ Route::group(['prefix' => 'home'], function () {
     Route::get('/tentang-kami', [DashboardController::class, 'visi'])->name('home.visi');
     Route::get('/layanan', [DashboardController::class, 'layanan'])->name('home.layanan');
     Route::get('/artikel', [DashboardController::class, 'artikel'])->name('home.artikel');
+    Route::get('/artikel/{slug}', [DashboardController::class, 'detail_artikel'])->name('home.detail_artikel');
     Route::get('/video', [DashboardController::class, 'video'])->name('home.video');
     Route::get('/foto', [DashboardController::class, 'foto'])->name('home.foto');
     Route::get('/request_anggota', [DashboardController::class, 'request_anggota'])->name('home.request_anggota');

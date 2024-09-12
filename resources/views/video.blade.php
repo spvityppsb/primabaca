@@ -27,7 +27,8 @@
                                     <div class="thumb">
                                         <a href="#">
                                             <video width="100%" controls>
-                                                <source src="/uploads/galeri/{{ $data->first_file }}" type="video/mp4">
+                                                <source src="/uploads/galeri/{{ $data->first_file }}" type="video/mp4"
+                                                    alt="{{ $data->slug }}">
                                                 Your browser does not support the video tag.
                                             </video>
                                         </a>
@@ -41,12 +42,6 @@
                                         </h3>
                                         <a href="#">Lihat Detail <i class="fas fa-angle-double-right"></i></a>
                                         <div class="meta">
-                                            <ul>
-                                                <li>
-                                                    <a href="#"><i class="fas fa-user"></i>
-                                                        {{ $data->created_by }}</a>
-                                                </li>
-                                            </ul>
                                         </div>
                                     </div>
                                 </div>

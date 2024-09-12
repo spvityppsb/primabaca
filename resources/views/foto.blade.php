@@ -29,7 +29,7 @@
                                 <div class="single-item">
                                     <div class="thumb">
                                         <a href="#">
-                                            <img src="/uploads/galeri/{{ $data->first_file }}" alt="{{ $data->nama_media }}"
+                                            <img src="/uploads/galeri/{{ $data->first_file }}" alt="{{ $data->slug }}"
                                                 class="img-fluid">
                                         </a>
                                         <div class="date">
@@ -42,12 +42,6 @@
                                         </h3>
                                         <a href="#">Lihat Detail <i class="fas fa-angle-double-right"></i></a>
                                         <div class="meta">
-                                            <ul>
-                                                <li>
-                                                    <a href="#"><i class="fas fa-user"></i>
-                                                        {{ $data->created_by }}</a>
-                                                </li>
-                                            </ul>
                                         </div>
                                     </div>
                                 </div>

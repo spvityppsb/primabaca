@@ -131,9 +131,22 @@ class DashboardController extends Controller
 
     public function artikel()
     {
-        $artikel = Article::orderBy('created_at', 'DESC')->paginate(1);
+        $artikel = Article::orderBy('created_at', 'DESC')->paginate(5);
         // ddd($artikel);
         return view('artikel', compact('artikel'));
+    }
+
+    public function detail_artikel($slug)
+    {
+        // Find the current article by slug
+        $artikel = Article::where('slug', $slug)->firstOrFail();
+
+        // Get the previous and next articles by date
+        $previous = Article::where('created_at', '<', $artikel->created_at)->orderBy('created_at', 'desc')->first();
+        $next = Article::where('created_at', '>', $artikel->created_at)->orderBy('created_at', 'asc')->first();
+
+        // Return the view with the article, previous, and next article data
+        return view('detail_artikel', compact('artikel', 'previous', 'next'));
     }
 
     public function request_anggota()
@@ -179,7 +192,7 @@ class DashboardController extends Controller
         // Ambil data galeri yang memiliki jenis media 'foto' dan urutkan berdasarkan tanggal pembuatan
         $galeri = Galeri::where('jenis_media', 'video')
             ->orderBy('created_at', 'DESC')
-            ->paginate(6);
+            ->paginate(5);
 
         // Map data untuk mendapatkan foto pertama dari setiap galeri
         $videoPertama = $galeri->getCollection()->map(function ($item) {
@@ -203,7 +216,7 @@ class DashboardController extends Controller
         // Ambil data galeri yang memiliki jenis media 'foto' dan urutkan berdasarkan tanggal pembuatan
         $galeri = Galeri::where('jenis_media', 'foto')
             ->orderBy('created_at', 'DESC')
-            ->paginate(6); // Use 6 items per page (or any number suitable for your needs)
+            ->paginate(5); // Use 6 items per page (or any number suitable for your needs)
 
         // Map data untuk mendapatkan foto pertama dari setiap galeri
         $fotoPertama = $galeri->getCollection()->map(function ($item) {
