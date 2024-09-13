@@ -33,7 +33,6 @@
                                         </a>
                                         <br>
                                         <br>
-                                        <hr>
                                         <h3>
                                             <a
                                                 href="{{ route('home.detail_foto', $data->slug) }}">{{ $data->nama_media }}</a>
@@ -41,12 +40,15 @@
                                     </div>
                                     <div class="info">
                                         <div class="date">
-                                            <h4>{{ $data->created_at->format('d M Y') }}</h4>
+                                            <h5>{{ $data->created_at->format('d M Y') }}</h5>
                                         </div>
                                         <a href="{{ route('home.detail_foto', $data->slug) }}">Lihat Detail <i
                                                 class="fas fa-angle-double-right"></i></a>
                                         <div class="meta">
                                         </div>
+                                        <br>
+                                        <hr>
+                                        <br>
                                     </div>
                                 </div>
                             </div>

@@ -17,36 +17,54 @@
     <div class="gallery-area default-padding">
         <div class="container">
             <div class="row">
-                @if ($videoPertama->isEmpty())
-                    <!-- Your no data result image here -->
+                @if ($galeri->isEmpty())
+                    <div class="text-center col-md-12"
+                        style="display: flex; justify-content: center; align-items: center; height: 50vh;">
+                        <img src="https://i.imgur.com/qIufhof.png" alt="No data result image" class="img-fluid">
+                    </div>
                 @else
-                    @foreach ($videoPertama as $data)
+                    @foreach ($galeri as $data)
                         @if ($data->first_file)
-                            <div class="mb-4 col-md-6">
+                            <div class="mb-4 col-md-6"> <!-- Added col-md-6 for 2-column layout -->
                                 <div class="single-item">
-                                    <div class="thumb">
-                                        <!-- Link to trigger video popup -->
-                                        <a href="/uploads/galeri/{{ $data->first_file }}" class="popup-video">
-                                            <video width="100%" controls>
-                                                <source src="/uploads/galeri/{{ $data->first_file }}" type="video/mp4"
-                                                    alt="{{ $data->slug }}">
-                                                Your browser does not support the video tag.
-                                            </video>
-                                        </a>
-                                        <div class="date">
-                                            <h4>{{ $data->created_at->format('d M Y') }}</h4>
+                                    <div class="item">
+                                        <div class="thumb">
+                                            <h3 class="text-center">
+                                                <a
+                                                    href="{{ route('home.detail_foto', $data->slug) }}">{{ $data->nama_media }}</a>
+                                            </h3>
+                                        </div>
+                                        <div class="info">
+
+                                            <div class="meta">
+                                            </div>
+                                        </div>
+                                        <div class="thumb">
+                                            <a href="/uploads/galeri/{{ $data->first_file }}" class="popup-video">
+                                                <video width="100%" controls>
+                                                    <source src="/uploads/galeri/{{ $data->first_file }}" type="video/mp4"
+                                                        alt="{{ $data->slug }}">
+                                                    Your browser does not support the video tag.
+                                                </video>
+                                            </a>
+                                            <div class="date">
+                                                <h5>{{ $data->created_at->format('d M Y') }}</h5>
+                                            </div>
+                                            <br>
+                                            <hr>
+                                            <br>
                                         </div>
                                     </div>
-                                    <div class="info">
-                                        <h3>
-                                            <a href="#">{{ $data->nama_media }}</a>
-                                        </h3>
-                                    </div>
-                                    <br><br>
                                 </div>
                             </div>
                         @endif
                     @endforeach
+                    <!-- Pagination -->
+                    <div class="col-md-12">
+                        <nav aria-label="navigation">
+                            {{ $galeri->links() }}
+                        </nav>
+                    </div>
                 @endif
             </div>
         </div>
@@ -56,10 +74,11 @@
 
 @section('css')
     <style>
-        .thumb video {
-            width: 100%;
-            height: auto;
-            object-fit: cover;
+        /* Grid column styling for a 2-column layout */
+        .col-md-6 {
+            width: 50%;
+            margin-bottom: 40px;
+            /* Add spacing between rows */
         }
 
         .single-item {
@@ -69,10 +88,20 @@
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
             background-color: #fff;
             transition: box-shadow 0.3s;
+            margin-bottom: 40px;
+            /* Ensure enough space between items */
         }
 
         .single-item:hover {
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .thumb video {
+            width: 100%;
+            height: auto;
+            object-fit: cover;
+            margin-bottom: 15px;
+            /* Add spacing between video and title */
         }
 
         .info {
@@ -98,9 +127,18 @@
             text-decoration: underline;
         }
 
+        hr {
+            margin: 20px 0;
+        }
+
+        /* Responsive Spacing */
         @media (max-width: 768px) {
+            .col-md-6 {
+                width: 100%;
+            }
+
             .single-item {
-                margin-bottom: 20px;
+                margin-bottom: 25px;
             }
         }
     </style>
