@@ -21,33 +21,42 @@ class GaleriController extends Controller
     }
 
     public function store(Request $request)
-    {
-        $request->validate([
-            'nama_media' => 'required|string|max:255',
-            'jenis_media' => 'required|in:foto,video',
-            'file.*' => 'required|file|mimes:jpeg,png,jpg,mp4,mkv|max:20480',
-            'publish' => 'nullable|boolean',
-        ]);
+{
+    $request->validate([
+        'nama_media' => 'required|string|max:255',
+        'jenis_media' => 'required|in:foto,video',
+        'file.*' => 'required|file|mimes:jpeg,png,jpg,mp4,mkv|max:20480',
+        'publish' => 'nullable|boolean',
+    ], [
+        // Custom error messages
+        'nama_media.required' => 'Nama media harus diisi.',
+        'jenis_media.required' => 'Jenis media harus dipilih.',
+        'file.*.required' => 'File media harus diunggah.',
+        'file.*.mimes' => 'File harus berformat: jpeg, png, jpg, mp4, mkv.',
+        'file.*.max' => 'Ukuran file maksimal adalah 20 MB.',
+    ]);
 
-        $files = [];
-        if ($request->hasFile('file')) {
-            foreach ($request->file('file') as $file) {
-                $filename = time() . '_' . $file->getClientOriginalName();
-                $file->move(public_path('uploads/galeri'), $filename);
-                $files[] = $filename;
-            }
+    // Proses upload file
+    $files = [];
+    if ($request->hasFile('file')) {
+        foreach ($request->file('file') as $file) {
+            $filename = time() . '_' . $file->getClientOriginalName();
+            $file->move(public_path('uploads/galeri'), $filename);
+            $files[] = $filename;
         }
-
-        Galeri::create([
-            'nama_media' => $request->nama_media,
-            'slug' => Str::slug($request->nama_media),
-            'jenis_media' => $request->jenis_media,
-            'file' => $files,
-            'publish' => $request->has('publish') ? 1 : 0,
-        ]);
-
-        return redirect()->route('galeri.index')->with('success', 'Galeri berhasil ditambahkan.');
     }
+
+    Galeri::create([
+        'nama_media' => $request->nama_media,
+        'slug' => Str::slug($request->nama_media),
+        'jenis_media' => $request->jenis_media,
+        'file' => $files,
+        'publish' => $request->has('publish') ? 1 : 0,
+    ]);
+
+    return redirect()->route('galeri.index')->with('success', 'Galeri berhasil ditambahkan.');
+}
+
 
     public function show($id)
     {
@@ -149,3 +158,4 @@ class GaleriController extends Controller
         return redirect()->back()->with('success', 'File berhasil dihapus.');
     }
 }
+
